@@ -1,0 +1,2 @@
+# EssentialNews
+SW_Architecture_Project
