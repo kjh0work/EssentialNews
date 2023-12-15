@@ -32,6 +32,7 @@ public class DatalabApiController {
     private final DatalabRepository datalabRepository;
 
     Datalab_input_info datalab_instance;
+    ResponseEntity<String> result;
 
     @PostMapping("/get-api")
     public String getApi(@ModelAttribute("datalab") Datalab_input_info datalabInputInfo,
@@ -71,7 +72,6 @@ public class DatalabApiController {
     }
 
     @GetMapping("/get_datalab_api")
-    @ResponseBody
     public String getDatalab(){
 
         RestTemplate restTemplate = new RestTemplate();
@@ -118,15 +118,43 @@ public class DatalabApiController {
                 .header("Content-Type", "application/json")
                 .body(requestBody.toString());
 
-        ResponseEntity<String> result = restTemplate.exchange(req, String.class);
+        result = restTemplate.exchange(req, String.class);
 
-
-        return result.getBody();
+        return "redirect:/show-graph";
     }
 
-    @GetMapping("/show_datalab_api")
-    public String showDatalab(){
+    @GetMapping("/show-graph")
+    public String showGraph(Model model) {
+        ResponseEntity<String> response = result;
+        String apiResponse = response.getBody();
 
-        return "/show_datalab";
+        //apiResponse를 파승해서 view에 전달
+        JSONObject jsonObject = new JSONObject(apiResponse);
+        JSONArray results_array = jsonObject.getJSONArray("results");
+
+        //results는 길이가 1인 배열, JSONobject가 들어있다.
+        JSONObject object = results_array.getJSONObject(0);
+
+        //title, 주제어 가져오기
+        String title = object.getString("title");
+        JSONArray data_array = object.getJSONArray("data");
+
+        String[] period = new String[data_array.length()];
+        for(int i = 0;i<data_array.length();i++){
+            JSONObject tmp = data_array.getJSONObject(i);
+            period[i] = tmp.getString("period");
+        }
+
+        Double[] ratio = new Double[data_array.length()];
+        for(int i = 0;i<data_array.length();i++){
+            JSONObject tmp = data_array.getJSONObject(i);
+            ratio[i] = tmp.getDouble("ratio");
+        }
+
+        // API 응답을 모델에 추가
+        model.addAttribute("title", title);
+        model.addAttribute("period", period);
+        model.addAttribute("ratio", ratio);
+        return "graphView";
     }
 }
