@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/get-api}" th:object="${datalab}" method="post">
+        <div>
+            <label for="startDate">시작 날짜:</label>
+            <input type="text" id="startDate" th:field="*{startDate}" placeholder="yyyy-mm-dd">
+            <small>2016년 1월 1일 부터 조회 가능</small>
+        </div>
+        <div>
+            <label for="endDate">종료 날짜:</label>
+            <input type="text" id="endDate" th:field="*{endDate}" placeholder="yyyy-mm-dd">
+        </div>
+        <div>
+            <label for="timeUnit">시간 단위:</label>
+            <select id="timeUnit" th:field="*{timeUnit}">
+                <option value="date">일간</option>
+                <option value="week">주간</option>
+                <option value="month">월간</option>
+            </select>
+        </div>
+        <div>
+            <label for="keywordGroupName">주제어:</label>
+            <input type="text" id="keywordGroupName" th:field="*{keywordGroupName}" placeholder="컴퓨터">
+        </div>
+        <div>
+            <label for="keywordGroupKeyword">키워드:</label>
+            <input type="text" id="keywordGroupKeyword" name="keywords_input" placeholder="키워드1, 키워드2">
+            <small>최대20개의 키워드를 작성 가능합니다.</small>
+        </div>
+        <div>
+            <label for="device">장치:</label>
+            <select id="device" th:field="*{device}">
+                <option value="pc">PC</option>
+                <option value="mo">모바일</option>
+            </select>
+        </div>
+        <div>
+            <label for="gender">성별:</label>
+            <select id="gender" th:field="*{gender}">
+                <option value="m">남성</option>
+                <option value="f">여성</option>
+            </select>
+        </div>
+        <div>
+            <label for="ages">장치:</label>
+            <textarea id="ages" name="ages" placeholder="1,2,3"></textarea>
+            <small>설정안함: 모든연령, 1: 0~12세, 2: 13~18세, 3: 19~24세, 4: 25~29, 5:30~34, 6: 35~39, 7: 40~44, 8: 45~49, 9: 50~54, 10: 55~59, 11: 60세 이상</small>
+        </div>
+        <div>
+            <button type="submit">등록</button>
+        </div>
+    </form>
+
+</body>
+</html>

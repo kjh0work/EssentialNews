@@ -1,4 +1,4 @@
-package com.example.essentialnews;
+package com.example.essentialnews.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

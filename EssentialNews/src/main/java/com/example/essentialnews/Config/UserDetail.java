@@ -1,5 +1,7 @@
-package com.example.essentialnews;
+package com.example.essentialnews.Config;
 
+import com.example.essentialnews.User.UserRepository;
+import com.example.essentialnews.User.Userinfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
