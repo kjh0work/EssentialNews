@@ -24,6 +24,9 @@ public class Datalab_input_info {
     @JoinColumn(name = "user_id")
     private Userinfo userinfo;
 
+    @OneToMany(mappedBy = "datalabInputInfo")
+    private List<Datalab_api_response> datalabApiResponses;
+
     private String startDate;
     private String endDate;
     private String timeUnit;

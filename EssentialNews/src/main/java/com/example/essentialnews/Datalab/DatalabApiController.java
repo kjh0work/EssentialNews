@@ -30,6 +30,7 @@ public class DatalabApiController {
     private String clientSecret;
 
     private final DatalabRepository datalabRepository;
+    private final DatalabResponseRepository datalabResponseRepository;
 
     Datalab_input_info datalab_instance;
     ResponseEntity<String> result;
@@ -155,6 +156,7 @@ public class DatalabApiController {
         model.addAttribute("title", title);
         model.addAttribute("period", period);
         model.addAttribute("ratio", ratio);
+
         return "graphView";
     }
 }

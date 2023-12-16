@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>News API Response</title>
+</head>
+<body>
+<h1>News</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Link</th>
+        <th>Publication Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="newsItem : ${newsitems}">
+        <td th:text="${newsItem.title}">Title</td>
+        <td><a th:href="${newsItem.link}" th:text="${newsItem.link}">Link</a></td>
+        <td th:text="${newsItem.pubDate}">Publication Date</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

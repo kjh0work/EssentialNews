@@ -23,8 +23,8 @@ public class SecurityConfiguration {
                                     ).permitAll()
                             .anyRequest().permitAll()
                 );
-        //http.formLogin(Customizer.withDefaults());
-        http.formLogin(login -> login.successForwardUrl("/index"));
+        http.formLogin(Customizer.withDefaults());
+        //http.formLogin(login -> login.successForwardUrl("/homepage"));
         http.httpBasic(Customizer.withDefaults());
 
         return http.build();
