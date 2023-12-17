@@ -17,14 +17,16 @@ public class SecurityConfiguration {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(new HandlerMappingIntrospector());
         http.authorizeHttpRequests((authz) ->
                     authz
-                            .requestMatchers(mvcMatcherBuilder.pattern("/index"),
-                                    mvcMatcherBuilder.pattern("/createUser"),
-                                    mvcMatcherBuilder.pattern("/datalab")
+                            .requestMatchers(mvcMatcherBuilder.pattern("/welcome"),
+                                    mvcMatcherBuilder.pattern("/sign-up")
                                     ).permitAll()
-                            .anyRequest().permitAll()
+                            .anyRequest().authenticated()
                 );
         http.formLogin(Customizer.withDefaults());
-        //http.formLogin(login -> login.successForwardUrl("/homepage"));
+        //http.formLogin(log -> log.successForwardUrl("/index"));
+        http.logout(logout -> logout.logoutSuccessUrl("/welcome")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID"));
         http.httpBasic(Customizer.withDefaults());
 
         return http.build();

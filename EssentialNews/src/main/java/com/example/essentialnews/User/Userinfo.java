@@ -1,7 +1,7 @@
 package com.example.essentialnews.User;
 
 
-import com.example.essentialnews.Datalab.Datalab_input_info;
+import com.example.essentialnews.Data.Datalab_info;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +22,7 @@ public class Userinfo {
     private String password;
 
     @OneToMany(mappedBy = "userinfo")
-    private List<Datalab_input_info> datalabInputInfos;
+    private List<Datalab_info> datalabInfos;
 
     @Override
     public String toString() {

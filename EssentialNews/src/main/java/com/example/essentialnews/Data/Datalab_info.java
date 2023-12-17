@@ -1,4 +1,4 @@
-package com.example.essentialnews.Datalab;
+package com.example.essentialnews.Data;
 
 import com.example.essentialnews.User.Userinfo;
 import jakarta.persistence.*;
@@ -6,16 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.json.JSONArray;
-import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class Datalab_input_info {
+public class Datalab_info {
 
     @Id @GeneratedValue
     private Long id;
@@ -23,9 +20,6 @@ public class Datalab_input_info {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Userinfo userinfo;
-
-    @OneToMany(mappedBy = "datalabInputInfo")
-    private List<Datalab_api_response> datalabApiResponses;
 
     private String startDate;
     private String endDate;

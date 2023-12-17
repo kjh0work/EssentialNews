@@ -1,11 +1,11 @@
-package com.example.essentialnews.News;
+package com.example.essentialnews.Data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Newsitems {
+public class News_info {
 
     public String title;
     public String link;

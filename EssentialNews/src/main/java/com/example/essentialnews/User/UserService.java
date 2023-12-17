@@ -26,4 +26,10 @@ public class UserService {
     }
 
 
+    public boolean checkDuplicate(String username) {
+        if(userRepository.findByUsername(username) != null){
+            return false;
+        }
+        return true;
+    }
 }

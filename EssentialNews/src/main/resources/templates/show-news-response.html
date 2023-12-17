@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>News API Response</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
-<h1>News</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Title</th>
-        <th>Link</th>
-        <th>Publication Date</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="newsItem : ${newsitems}">
-        <td th:text="${newsItem.title}">Title</td>
-        <td><a th:href="${newsItem.link}" th:text="${newsItem.link}">Link</a></td>
-        <td th:text="${newsItem.pubDate}">Publication Date</td>
-    </tr>
-    </tbody>
-</table>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <!-- '홈으로' 버튼 추가 -->
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mb-4" th:text="${keyword} + ' 관련 뉴스 목록'">키워드</h1>
+        <form th:action="@{/homepage}" method="get">
+            <button type="submit" class="btn btn-primary">홈으로</button>
+        </form>
+    </div>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>제목</th>
+            <th>기사 주소</th>
+            <th>게시일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="newsItem : ${newsitems}">
+            <td th:text="${newsItem.title}">제목</td>
+            <td><a th:href="${newsItem.link}" th:text="${newsItem.link}">기사 주소</a></td>
+            <td th:text="${newsItem.pubDate}">게시일</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
