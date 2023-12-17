@@ -23,7 +23,6 @@ public class SecurityConfiguration {
                             .anyRequest().authenticated()
                 );
         http.formLogin(Customizer.withDefaults());
-        //http.formLogin(log -> log.successForwardUrl("/index"));
         http.logout(logout -> logout.logoutSuccessUrl("/welcome")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID"));

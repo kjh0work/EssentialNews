@@ -13,8 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,13 +140,10 @@ public class DataService {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String query = title;
-        String encoded = URLEncoder.encode(query, StandardCharsets.UTF_8);
-
         URI uri = UriComponentsBuilder
                 .fromUriString("https://openapi.naver.com")
                 .path("/v1/search/news.json")
-                .queryParam("query", encoded)
+                .queryParam("query", title)
                 .queryParam("display", 100)
                 .queryParam("start", 1)
                 .queryParam("sort", "sim")
