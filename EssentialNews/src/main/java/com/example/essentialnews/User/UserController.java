@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping("/welcome")
     public String welcome(){
-        return "/Welcome";
+        return "Welcome";
     }
 
     @GetMapping("/login-con")
@@ -28,7 +28,7 @@ public class UserController {
     @GetMapping("/sign-up")
     public String signup(Model model){
         model.addAttribute("userinfo",new Userinfo());
-        return "/SignupPage";
+        return "SignupPage";
     }
 
     @PostMapping("/sign-up")
@@ -37,7 +37,7 @@ public class UserController {
         if(!isUsernameOk){
             model.addAttribute("usernameDuplicate", "이미 존재하는 사용자명입니다.");
             model.addAttribute("userinfo", userinfo);
-            return "/SignupPage";
+            return "SignupPage";
         }
 
         userService.saveUser(userinfo.getUsername(), userinfo.getPassword());
@@ -46,19 +46,19 @@ public class UserController {
 
     @PostMapping("/login")
     public String SuccessLogin(){
-        return "/PersonalPage";
+        return "PersonalPage";
     }
 
     @GetMapping("/homepage")
     public String homepage(Model model){
 
-        return "/PersonalPage";
+        return "PersonalPage";
     }
 
     @PostMapping("/logout")
     public String goTowelcome(){
 
-        return "/Welcome";
+        return "Welcome";
     }
 
 

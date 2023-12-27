@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: essentialnews
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mysql:8.0.22
+    container_name: mysql-1
+    environment:
+      MYSQL_ROOT_PASSWORD: 0513
+      MYSQL_DATABASE: test
+      MYSQL_USER: newsuser
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+
+volumes:
+  db_data:
+

@@ -45,7 +45,7 @@ public class DataController {
     public String showHistory(Model model, Principal principal){
         List<Datalab_info> Datalab_list = dataService.getDatalabAll(principal.getName());
         model.addAttribute("datalab_list", Datalab_list);
-        return "/history";
+        return "history";
     }
 
     //사용자에게 Datalab api 관련 정보 받아오기
@@ -140,6 +140,6 @@ public class DataController {
 
         model.addAttribute("newsitems", newsitem_list);
         model.addAttribute("keyword", title_tmp);
-        return "/show-news-response";
+        return "show-news-response";
     }
 }
