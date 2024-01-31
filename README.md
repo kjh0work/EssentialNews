@@ -46,3 +46,10 @@ This project is designed to assist people who have limited time to search for re
 
     웹 브라우저에서 'localhost:8080/welcome'으로 접속 가능합니다.
     <img src="./README_Resource/welcome.png" width="600px" height="300px" title=" success" alt="접속 성공"></img><br/>
+
+6. 종료 방법
+
+    ```
+    docker-compose down -v
+    ```
+    명령어로 종료 가능합니다.
